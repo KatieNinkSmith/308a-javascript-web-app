@@ -2,6 +2,48 @@
   padding: 0;
   margin: 0;
 }
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: monospace;
+  font-weight: bolder;
+}
+header h1 {
+  margin: 15px;
+  padding: 5px;
+}
+header .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn button {
+  border: 2px solid #add59a;
+  margin: 5px;
+  padding: 2px;
+  font-family: inherit;
+  background: radial-gradient(#e8f7ee, #e8f7ee, #ffcc99);
+}
+.btn button:focus {
+  border: 2px solid #00a6a6;
+}
+select {
+  margin: 50px auto;
+  padding: 5px;
+  font-family: inherit;
+  background: radial-gradient(#e8f7ee, #e8f7ee, #ffcc99);
+  border: 2px SOLID #add59a;
+}
+select:focus {
+  border: 2px solid #00a6a6;
+}
+option {
+  background: radial-gradient(#e8f7ee, #e8f7ee, #ffcc99);
+  border: 2px solid #add59a;
+}
 
 body {
   min-height: 100vh;
