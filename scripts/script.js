@@ -4,8 +4,8 @@ export const filterByCategory = document.querySelector("#categorySelect");
 // console.log(filterByCategory);
 export const mealSelect = document.querySelector("#mealDropDown");
 // console.log(mealSelect);
-// export const selectOptions = document.querySelectorAll(".select");
-// console.log(selectOptions);
+export const recipeOption = document.querySelector("#recipeCardView");
+// console.log(recipeOption);
 
 export const endPoints = {
   mealOrigin: `https://www.themealdb.com/api/json/v1/1/list.php?a=list`,

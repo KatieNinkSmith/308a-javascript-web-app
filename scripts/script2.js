@@ -4,6 +4,8 @@ import { endPoints } from "./script.js";
 // console.log(endPoints);
 import { mealSelect } from "./script.js";
 // console.log(mealSelect);
+import { recipeOption } from "./script.js";
+// console.log(recipeOption);
 
 // adds all world orgin locations as a recipe filter option
 async function originSelect() {
@@ -13,7 +15,7 @@ async function originSelect() {
   // console.log(jsonData.meals, "stuff");
   const mealName = jsonData.meals;
   const newElement0 = document.createElement("option");
-  newElement0.id = `countryOrigin`;
+  newElement0.class = `countryOrigin`;
   newElement0.textContent = `Recipes by Country of Origin`;
   filterByOrigin.appendChild(newElement0);
   mealName.forEach((item) => {
@@ -38,6 +40,10 @@ filterByOrigin.addEventListener("change", () => {
       `https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedOrigin}`
     );
     const jasonData1 = await selectedRecipes.json();
+    const newElement0 = document.createElement("option");
+    newElement0.class = `countryOrigin`;
+    newElement0.textContent = `Recipes by Country of Origin`;
+    mealSelect.appendChild(newElement0);
     // console.log(jasonData1.meals);
     jasonData1.meals.forEach((item) => {
       const newElement = document.createElement("option");
@@ -47,4 +53,36 @@ filterByOrigin.addEventListener("change", () => {
     });
   }
   fetchData();
+});
+
+mealSelect.addEventListener("change", (event) => {
+  async function recipeCard() {
+    event.target.value.toLowerCase();
+    // console.log(event.target.value);
+    const data = await fetch(
+      `https://www.themealdb.com/api/json/v1/1/search.php?s=${event.target.value}`
+    );
+    const jsonData = await data.json();
+    // console.log(jsonData);
+    recipeOption.innerHTML = "";
+    let jason = jsonData.meals;
+    jason.forEach((item) => {
+      const newH2 = document.createElement("h2");
+      newH2.textContent = item.strMeal;
+      recipeOption.appendChild(newH2);
+      const newImg = document.createElement("img");
+      newImg.src = item.strMealThumb;
+      newImg.class = "img";
+      newImg.style.width = "200px";
+      recipeOption.appendChild(newImg);
+      const newP = document.createElement("p");
+      newP.textContent = item.strInstructions;
+      recipeOption.appendChild(newP);
+      const newBtn = document.createElement("button");
+      newBtn.class = "flipButton";
+      newBtn.textContent = "More...";
+      recipeOption.appendChild(newBtn);
+    });
+  }
+  recipeCard();
 });
