@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/style.css" />
     <script type="module" defer src="./scripts/script.js"></script>
+    <script type="module" defer src="./scripts/script2.js"></script>
+    <script type="module" defer src="./scripts/script3.js"></script>
+    <script type="module" defer src="./scripts/script4.js"></script>
     <title>Recipe Box</title>
   </head>
   <body>
     <header>
       <h1>Recipe Box</h1>
       <div>
-        <select id="originSelect"></select>
-        <select id="categorySelect"></select>
+        <select class="select" id="originSelect"></select>
+        <select class="select" id="categorySelect"></select>
       </div>
       <!-- <div class="btn">
         <button id="randomBtn">Random Recipe</button>
       </div> -->
-      <select name="mealSelect" id="mealDropDown" style="width: 200px"></select>
+      <select
+        class="select"
+        name="mealSelect"
+        id="mealDropDown"
+        style="width: 200px"
+      ></select>
     </header>
     <main>
-      <form id="recipeCard"></form>
+      <div id="recipeCardView"></div>
     </main>
   </body>
 </html>
