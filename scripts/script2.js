@@ -1,11 +1,19 @@
-import { filterByOrigin } from "./script.js";
+import {
+  filterByOrigin,
+  endPoints,
+  mealSelect,
+  recipeOption,
+  recipeOptionFront,
+  recipeOptionBack,
+} from "./script.js";
 // console.log(filterByOrigin);
-import { endPoints } from "./script.js";
-// console.log(endPoints);
-import { mealSelect } from "./script.js";
-// console.log(mealSelect);
-import { recipeOption } from "./script.js";
-// console.log(recipeOption);
+// import { endPoints } from "./script.js";
+// // console.log(endPoints);
+// import { mealSelect } from "./script.js";
+// // console.log(mealSelect);
+
+// import { recipeOptionFront } from "./script.js";
+// console.log(recipeOptionFront);
 
 // adds all world orgin locations as a recipe filter option
 async function originSelect() {
@@ -59,45 +67,57 @@ mealSelect.addEventListener("change", (event) => {
   async function recipeCard() {
     try {
       event.target.value.toLowerCase();
-      // console.log(event.target.value);
+      console.log(event.target.value);
+      mealSelect.onClick = toggleVisibility(recipeOptionFront);
+
       const data = await fetch(
         `https://www.themealdb.com/api/json/v1/1/search.php?s=${event.target.value}`
       );
       const jsonData = await data.json();
-      // console.log(jsonData);
-      recipeOption.innerHTML = "";
+      console.log(jsonData);
+      recipeOptionFront.innerHTML = "";
       let jason = jsonData.meals;
       jason.forEach((item) => {
         const newH2 = document.createElement("h2");
         newH2.textContent = item.strMeal;
-        recipeOption.appendChild(newH2);
+        recipeOptionFront.appendChild(newH2);
+        console.log(newH2);
         const newImg = document.createElement("img");
         newImg.src = item.strMealThumb;
         newImg.class = "img";
         newImg.style.width = "200px";
-        recipeOption.appendChild(newImg);
+        recipeOptionFront.appendChild(newImg);
         const newP = document.createElement("p");
         newP.textContent = item.strInstructions;
-        recipeOption.appendChild(newP);
-        const newBtn = document.createElement("button");
-        newBtn.id = "filpBtn";
-        newBtn.onclick = toggleVisibility("myElement");
-        newBtn.textContent = "More...";
-        recipeOption.appendChild(newBtn);
+        recipeOptionFront.appendChild(newP);
+        const newUl = document.createElement("ul");
+        newUl.textContent = item.strMeal;
+        recipeOptionBack.appendChild(newUl);
+        console.log(newUl);
+        const newLi = document.createElement("li");
+        newLi.textContent = `${item.strIngredient1}${item.strMeasure1}`;
+        newLi.style.display = "flex";
+        newLi.style.justifyContent = "space-between";
+        recipeOptionBack.appendChild(newLi);
+        const newA = document.createElement("a");
+        newA.herf = item.strYoutube;
+        newA.class = "video";
+        newA.style.width = "300px";
+        recipeOptionBack.appendChild(newA);
       });
     } catch (error) {
       const ohNoMyTableItsBroken = document.createElement("p");
       ohNoMyTableItsBroken.style.color = "red";
       ohNoMyTableItsBroken.textContent =
         "An ohNoMyTableItsBroken occurred. Please make a selection";
-      recipeOption.appendChild(ohNoMyTableItsBroken);
+      recipeOptionFront.appendChild(ohNoMyTableItsBroken);
     }
   }
   recipeCard();
 });
-function toggleVisibility(elementId) {
-  const element = document.getElementById(elementId);
-  if (element.style.visibility === "hidden") {
-    element.style.visibility = "visible";
+
+function toggleVisibility() {
+  if (recipeOptionFront.style.visibility === "hidden") {
+    recipeOptionFront.style.visibility = "visible";
   }
 }

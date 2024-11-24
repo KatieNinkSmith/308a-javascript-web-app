@@ -4,8 +4,8 @@ import { endPoints } from "./script.js";
 // console.log(endPoints);
 import { mealSelect } from "./script.js";
 // console.log(mealSelect);
-import { recipeOption } from "./script.js";
-// console.log(recipeOption);
+import { recipeOptionFront } from "./script.js";
+// console.log(recipeOptionFront);
 
 // adds meal catagories as a filter option
 async function categorySelect() {
@@ -60,24 +60,24 @@ mealSelect.addEventListener("change", (event) => {
     );
     const jsonData = await data.json();
     // console.log(jsonData);
-    recipeOption.innerHTML = "";
+    recipeOptionFront.innerHTML = "";
     let jason = jsonData.meals;
     jason.forEach((item) => {
       const newH2 = document.createElement("h2");
       newH2.textContent = item.strMeal;
-      recipeOption.appendChild(newH2);
+      recipeOptionFront.appendChild(newH2);
       const newImg = document.createElement("img");
       newImg.src = item.strMealThumb;
       newImg.class = "img";
       newImg.style.width = "200px";
-      recipeOption.appendChild(newImg);
+      recipeOptionFront.appendChild(newImg);
       const newP = document.createElement("p");
       newP.textContent = item.strInstructions;
-      recipeOption.appendChild(newP);
-      const newBtn = document.createElement("button");
-      newBtn.class = "flipButton";
-      newBtn.textContent = "More...";
-      recipeOption.appendChild(newBtn);
+      recipeOptionFront.appendChild(newP);
+      // const newBtn = document.createElement("button");
+      // newBtn.class = "flipButton";
+      // newBtn.textContent = "More...";
+      // recipeOptionFront.appendChild(newBtn);
     });
   }
   recipeCard();
