@@ -4,7 +4,7 @@ export const filterByCategory = document.querySelector("#categorySelect");
 // console.log(filterByCategory);
 export const mealSelect = document.querySelector("#mealDropDown");
 // console.log(mealSelect);
-export const recipeOption = document.querySelector("#recipeCardView");
+export const recipeOption = document.querySelector("#myElement");
 // console.log(recipeOption);
 
 export const endPoints = {

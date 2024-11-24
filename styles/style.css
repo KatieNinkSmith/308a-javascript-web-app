@@ -55,7 +55,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100%;
 }
-#recipeCardView {
+#myElement {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -66,5 +66,11 @@ body {
   border-radius: 5px;
   background: linear-gradient(#00a6a6, #add59a, #e8f7ee, #e8f7ee, #e8f7ee);
 }
-.flipButton {
+#divOn {
+  visibility: hidden;
 }
+#divOff {
+  visibility: visible;
+}
+/* .flipButton {
+} */

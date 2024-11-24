@@ -57,32 +57,47 @@ filterByOrigin.addEventListener("change", () => {
 
 mealSelect.addEventListener("change", (event) => {
   async function recipeCard() {
-    event.target.value.toLowerCase();
-    // console.log(event.target.value);
-    const data = await fetch(
-      `https://www.themealdb.com/api/json/v1/1/search.php?s=${event.target.value}`
-    );
-    const jsonData = await data.json();
-    // console.log(jsonData);
-    recipeOption.innerHTML = "";
-    let jason = jsonData.meals;
-    jason.forEach((item) => {
-      const newH2 = document.createElement("h2");
-      newH2.textContent = item.strMeal;
-      recipeOption.appendChild(newH2);
-      const newImg = document.createElement("img");
-      newImg.src = item.strMealThumb;
-      newImg.class = "img";
-      newImg.style.width = "200px";
-      recipeOption.appendChild(newImg);
-      const newP = document.createElement("p");
-      newP.textContent = item.strInstructions;
-      recipeOption.appendChild(newP);
-      const newBtn = document.createElement("button");
-      newBtn.class = "flipButton";
-      newBtn.textContent = "More...";
-      recipeOption.appendChild(newBtn);
-    });
+    try {
+      event.target.value.toLowerCase();
+      // console.log(event.target.value);
+      const data = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${event.target.value}`
+      );
+      const jsonData = await data.json();
+      // console.log(jsonData);
+      recipeOption.innerHTML = "";
+      let jason = jsonData.meals;
+      jason.forEach((item) => {
+        const newH2 = document.createElement("h2");
+        newH2.textContent = item.strMeal;
+        recipeOption.appendChild(newH2);
+        const newImg = document.createElement("img");
+        newImg.src = item.strMealThumb;
+        newImg.class = "img";
+        newImg.style.width = "200px";
+        recipeOption.appendChild(newImg);
+        const newP = document.createElement("p");
+        newP.textContent = item.strInstructions;
+        recipeOption.appendChild(newP);
+        const newBtn = document.createElement("button");
+        newBtn.id = "filpBtn";
+        newBtn.onclick = toggleVisibility("myElement");
+        newBtn.textContent = "More...";
+        recipeOption.appendChild(newBtn);
+      });
+    } catch (error) {
+      const ohNoMyTableItsBroken = document.createElement("p");
+      ohNoMyTableItsBroken.style.color = "red";
+      ohNoMyTableItsBroken.textContent =
+        "An ohNoMyTableItsBroken occurred. Please make a selection";
+      recipeOption.appendChild(ohNoMyTableItsBroken);
+    }
   }
   recipeCard();
 });
+function toggleVisibility(elementId) {
+  const element = document.getElementById(elementId);
+  if (element.style.visibility === "hidden") {
+    element.style.visibility = "visible";
+  }
+}
