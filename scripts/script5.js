@@ -1,3 +1,4 @@
+// attemping to turn my functions into reuseable functions i could not figure out how to handle getting the str value to put into text content as a paramater and time was ticking so i went back to my original mostly copypasted functions with the changes needed for each.
 // import {
 //   filterByOrigin,
 //   filterByCategory,

@@ -63,7 +63,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0px auto;
-  width: 90vw;
+  width: 80vw;
   min-height: fit-content;
 }
 .container:hover > .card {
@@ -100,6 +100,7 @@ body {
   align-items: center;
   flex-direction: row;
   margin: 20px;
+  padding: 20px;
   transform: rotateY(180deg);
   backface-visibility: hidden;
 
