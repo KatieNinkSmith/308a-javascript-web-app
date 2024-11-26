@@ -16,24 +16,15 @@ header h1 {
   padding: 5px;
   font-size: 60px;
 }
-/* header .btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.btn button {
+.btn {
   border: 2px solid #add59a;
-  margin: 5px;
-  padding: 2px;
+  margin: 10px auto;
+  padding: 5px;
   font-family: inherit;
   background: radial-gradient(#e8f7ee, #e8f7ee, #ffcc99);
 }
-.btn button:focus {
-  border: 2px solid #00a6a6;
-} */
 select {
-  margin: 30px auto;
+  margin: 10px auto;
   padding: 5px;
   font-family: inherit;
   background: radial-gradient(#e8f7ee, #e8f7ee, #ffcc99);
@@ -41,6 +32,13 @@ select {
 }
 select:focus {
   border: 2px solid #00a6a6;
+}
+p {
+  margin: 10px auto;
+  padding: 5px;
+  font-family: inherit;
+  border: 2px SOLID #add59a;
+  background: radial-gradient(#e8f7ee, #e8f7ee, #ffcc99);
 }
 option {
   background: radial-gradient(#e8f7ee, #e8f7ee, #ffcc99);
@@ -57,6 +55,9 @@ body {
   background-image: url(https://media.istockphoto.com/id/877763072/photo/vintage-recipe-box.jpg?s=612x612&w=0&k=20&c=vKX9nEqY4cDLy8RegWuFhk9ITMGdPmKygiPLDoxGT7Y=);
   background-repeat: no-repeat;
   background-size: 100%;
+}
+.mealDropDown {
+  width: 200px;
 }
 .container {
   display: flex;
@@ -98,12 +99,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   margin: 20px;
   padding: 20px;
   transform: rotateY(180deg);
   backface-visibility: hidden;
-
-  /* background-color: palevioletred;
-  border: pink solid; */
+}
+li {
+  display: flex;
+  flex-direction: column;
 }

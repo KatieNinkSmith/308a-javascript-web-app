@@ -2,9 +2,13 @@
 
 https://www.themealdb.com/images/ingredients/Lime.png use image as a scorce
 
+PLANNING
 recipe card site
 make look like open recipe box
 each recipe will populate on something and looks like a recipe card lots of navigations options based on meal type, ingredient, or origin country.
+
+GETTING THE INGREDIENTS AND MEASUREMENT INTO A LIST
+so i have ingredients and measurements in the api they are not objects strings of all ingredients they are just part if the string do i need to turn my object into an array and splice the array to only show the ingredients and then the measurements and then display each index of with the index of the other then add and if the value is " " or null continue on to the next array item without displaying it......or i can write 20+ lines of code to display ingredients and then write an if to ignore " " and null, then 20+ to display measurements bah i dont like my API anymore......
 
 Images
 Meal Thumbnail Images

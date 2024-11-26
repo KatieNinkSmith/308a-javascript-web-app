@@ -1,4 +1,9 @@
-import { endPoints, mealSelect, recipeOptionFront } from "./script.js";
+import {
+  endPoints,
+  mealSelect,
+  recipeOptionFront,
+  randomBtn,
+} from "./script.js";
 
 // adds random recipe for an optins to the meal options
 async function randomRecipe() {
@@ -11,32 +16,37 @@ async function randomRecipe() {
 }
 randomRecipe();
 
-mealSelect.addEventListener("change", (event) => {
-  async function recipeCard() {
-    // console.log(event.target.value);
-    const data = await fetch(`${endPoints.random}`);
-    // console.log(data);
-    const jsonData = await data.json();
-    // console.log(jsonData);
-    recipeOptionFront.innerHTML = "";
-    let jason = jsonData.meals;
-    jason.forEach((item) => {
-      const newH2 = document.createElement("h2");
-      newH2.textContent = item.strMeal;
-      recipeOptionFront.appendChild(newH2);
-      const newImg = document.createElement("img");
-      newImg.src = item.strMealThumb;
-      newImg.class = "img";
-      newImg.style.width = "200px";
-      recipeOptionFront.appendChild(newImg);
-      const newP = document.createElement("p");
-      newP.textContent = item.strInstructions;
-      recipeOptionFront.appendChild(newP);
-      // const newBtn = document.createElement("button");
-      // newBtn.id = "filpBtn";
-      // newBtn.textContent = "More...";
-      // recipeOptionFront.appendChild(newBtn);
-    });
+randomBtn.addEventListener("click", () => {
+  // Fetch data asynchronously
+  async function fetchDataRandom() {
+    const randomRecipeBtn = randomBtn.value.toLowerCase(); // Get selected value
+    console.log(randomRecipeBtn); // Log the selected button value (for debugging)
+
+    try {
+      const selected = await fetch(`${endPoints.random}${randomRecipeBtn}`);
+      const jsonData = await selected.json();
+      mealSelect.innerHTML = ""; // clear the options in the dropdown menu
+      // Check if there are meals returned
+      if (jsonData.meals) {
+        // Add "Random Recipe" option to the dropdown
+        const randomRecipe = document.createElement("option");
+        randomRecipe.textContent = "Random Recipe";
+        mealSelect.appendChild(randomRecipe);
+
+        // Add fetched meals to the dropdown
+        jsonData.meals.forEach((item) => {
+          const newElement = document.createElement("option");
+          newElement.id = item.strMeal;
+          newElement.textContent = item.strMeal;
+          mealSelect.appendChild(newElement);
+        });
+      } else {
+        console.log("No meals found for this category.");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
-  recipeCard();
+
+  fetchDataRandom();
 });
